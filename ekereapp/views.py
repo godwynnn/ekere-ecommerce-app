@@ -28,7 +28,7 @@ import os
 import stripe
 from django.http import JsonResponse,HttpResponse,Http404
 # session=SessionStore()
-def  home_page(request):
+def  Home_page(request):
     
     # print(request)
     if "member_id" in request.session:
@@ -98,7 +98,7 @@ def create_page(request):
     return render(request,template,context)
 
 @allowed_user
-def update_page(request, id,slug):
+def Update_page(request, id,slug):
     query=Product.objects.get(id= id, slug=slug)
     form=EkerePostForm(request.POST or None, instance=query)
     if request.method=='POST':
@@ -111,14 +111,14 @@ def update_page(request, id,slug):
     return render(request,template,context)
 
 @allowed_user
-def delete_page(request,slug,id):
+def Delete_page(request,slug,id):
     query=Product.objects.get(id=id,slug=slug)
     query.delete()
     return redirect("/index")
     return render(request)
 
 @authenticated_user
-def signup_page(request):
+def Signup_page(request):
     group=None
     form=UserForm(request.POST or None)
     if request.method=='POST':
@@ -138,7 +138,7 @@ def signup_page(request):
 
 
 @authenticated_user
-def signin_view(request):
+def Signin_view(request):
     # member_id=request.session['member_id']
     # print('USER ID' + member_id)
     if request.method=='POST':
@@ -341,7 +341,7 @@ def Address_page(request):
 
 
 @login_required(login_url='login')
-def create_payment(request):
+def Create_payment(request):
     member_id=request.session['member_id']
     cart=Cart.objects.filter(member_id=member_id,ordered=False).first()
     items=''
