@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from .views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+  
     path('',Home_page, name='home'),
     path('ekere-new/',Create_page, name='create'),
     # path('ekere/<slug:slug>/<int:id>/',Detail_page,name='detail'),
