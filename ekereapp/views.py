@@ -339,7 +339,7 @@ def Address_page(request):
 
 
 
-stripe.api_key = settings.STRIPE_SECRET
+
 @login_required(login_url='login')
 def create_payment(request):
     member_id=request.session['member_id']
@@ -347,7 +347,8 @@ def create_payment(request):
     items=''
     for product in cart.items.all():
         items=product
-    
+    DOMAIN='ekere-ecomm.herokuapp.com/'    
+    stripe.api_key = settings.STRIPE_SECRET
     session = stripe.checkout.Session.create(
         line_items=[{
         'price_data': {
@@ -360,8 +361,8 @@ def create_payment(request):
         'quantity': 1,
         }],
         mode='payment',
-        success_url='ekere-ecomm.herokuapp.com/success/',
-        cancel_url='ekere-ecomm.herokuapp.com/cancel/',
+        success_url=DOMAIN+'success',
+        cancel_url=DOMAIN+'cancel',
     )
 
     return redirect(session.url, code=303)
