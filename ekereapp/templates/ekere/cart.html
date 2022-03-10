@@ -1,0 +1,71 @@
+{%extends 'base.html' %}
+
+{%block content%}
+{% include 'navbar.html'%}
+
+<div class="cart_container">
+    
+    <div class="cart">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Products</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>del</th>
+                    <!-- <th>-</th> -->
+                </tr>
+            </thead>
+
+
+
+            <tbody>
+                    {% for product in cart.items.all%}
+                    
+                    <tr>
+                    
+                        <td>{{forloop.counter}}</td>
+                        <td>{{product.item.title|truncatewords:5}}</td>
+                        <td>${{product.product_price}}</td>
+                        <td class="quantity"> <a href="{%url 'remove_single_item' product.item.slug%}">-</a>{{product.quantity}} <a href="{%url 'add_to_cart' product.item.slug %}">+</a></td>
+                        <td class="delete"><a href="{%url 'remove_from_cart' product.item.slug%}" style="text-decoration: none;"><p>X</p></a> </td>
+                    
+                    </tr>
+                    
+                    {%endfor%}
+              
+            </tbody>
+
+
+
+            <tfoot>
+                <tr>
+                    <th colspan="3">Total</th>
+                    <th colspan="2">${{total_price}}</th>
+                   
+            </tfoot>
+            
+        </table>
+        <button id="continue_shopping" class="btn btn-danger">Continue shopping</button> <a href="{%url 'address' %}"><button class="btn btn-success">Proceed</button></a>
+    </div>
+
+
+    <script>
+
+            shopping=document.getElementById('continue_shopping')
+
+            shopping.addEventListener('click',()=>{
+                return window.location='{%url "home" %}'
+            })
+            // return window.history.back(-1)
+            
+           
+            
+
+    </script>
+
+</div>
+{%include 'footer.html' %}
+{%endblock%}

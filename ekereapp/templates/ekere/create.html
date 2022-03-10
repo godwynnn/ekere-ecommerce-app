@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+
+
+{% block content %}
+{% include 'navbar.html'%}
+{% if user.is_authenticated %}
+    {% if user.is_staff %}
+    <form method="POST" action="">{% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Send</button>
+    </form>
+    {% endif %}
+    {% endif %}
+{% endblock %}

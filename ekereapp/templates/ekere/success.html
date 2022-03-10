@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+<div class="bg-light msg_confirm_holder">
+
+    <div class="msg_confirm">
+        <h3>Payment Successful</h3> <br>
+        <img src="{%static 'media/payment_success.png' %}" alt=""> <br><br>
+        <a href="{%url 'dashboard' %}"><button class="btn btn-success">Proceed to dashboard</button></a>
+    </div>
+
+</div>
+{%endblock%}

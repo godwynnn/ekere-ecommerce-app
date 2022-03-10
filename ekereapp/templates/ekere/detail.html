@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block content %}
+{% include 'navbar.html'%}
+        <!-- <img src="{{ object.image.url }}" alt=""> -->
+        <!-- <div>
+                {{object.image.url}}
+        </div> -->
+        <h1 style=>{{object.title}}</h1>
+        
+        <p>{{object.date_added}}</p>
+        <p style="font-family: Georgia, 'Times New Roman', Times, serif; line-height: 30px; text-align: center;">{{object.content}}</p>
+        <br>
+        <a href="/ekere/{{object.slug}}/{{object.id}}/edit">EDIT</a>
+        <a href="/ekere/{{object.slug}}/{{object.id}}/delete">DELETE</a>
+     <!-- <a href="/ekere/{{..object.slug}}/{{object.id}}">Next Post</a> -->
+
+        <br><br><hr>
+        {% for object in object.comments.all %}
+                        <h3>{{object.name}}</h3><small> date added {{object.date_added}}</small>
+                        <p>{{object.email}}</p>
+                        <p>{{object.content}}</p>
+
+                {% empty %}
+                        <p>No comment yet</p>
+        {% endfor %}
+
+
+        <form action="" method="POST">{% csrf_token%}
+                {{form.as_p}}
+                <button type="submit">Send</button>
+        </form>
+
+
+{% endblock %}
+

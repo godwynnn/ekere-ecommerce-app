@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+
+
+{% block content %}
+<div class="auth_form_holder">
+        <div class="auth_form signup_holder">
+        <h4 style="color: whitesmoke;">Create new account</h4>
+            <form method="post" class="" action="">{% csrf_token %}
+               
+               
+                {%for fields in form%}
+                <label class="">
+            {{fields}}
+            </label>
+
+       {%endfor%}
+                <br>
+                <button type="submit" class="btn btn-success btn-md">Signup</button><br><br><br>
+                <a href="/ekere-signin">Already have an account? Login</a>
+                <p style="color: white;">{{form.errors}}</p>
+            </form>
+
+            
+        </div>
+</div>
+{% endblock %}

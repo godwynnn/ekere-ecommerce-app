@@ -1,0 +1,170 @@
+{%load static%}
+
+<style>
+    .slides input{
+        display: none;
+    }
+    .navigation-auto{
+        width: 100%;
+        height: 10vh;
+        border: 1px solid black;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        display: none;
+    }
+    .navigation-auto div{
+        border: 2px solid black;
+        padding: 5px;
+        width: 15px;
+        height: 15px;
+        border-radius: 10px;
+        transition: 2s;
+
+    }
+    .navigation-auto div:not(:last-child){
+        margin-right: 5px;
+    }
+    /* #radio1:checked~. .navigation-auto .auto-btn1{
+
+    } */
+
+    .navigation-manual{
+        width: 100%;
+        /* border: 1px solid black; */
+        position: absolute;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 90vh;
+    }
+    .navigation-manual label{
+        border: 1px solid black;
+        border-radius: 50px;
+        padding: 5px;
+        width: 15px;
+        height: 15px;
+        transition: 2s;
+        cursor: pointer;
+    }
+    .navigation-manual label:hover{
+    background-color: black;
+}
+.navigation-manual label:not(:last-child){
+    margin-right: 15px;
+}
+
+
+
+ 
+</style>
+
+
+<header style="width: 100%; padding: 0% 4%; margin-top: 1.5%;">
+
+
+
+        
+    
+   
+
+
+    <div class="header">
+     
+       
+        <div class="slides">
+
+
+
+                    <input type="radio" name="radio-btn" value="" id="radio1" >
+                    <input type="radio" name="radio-btn" value="" id="radio2" >
+                    <input type="radio" name="radio-btn" value="" id="radio3">
+
+                
+                <div class="slide first">
+
+                    <div class="content">
+                        <h2>Lorem ipsum dolor, sit amet consectetur </h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod autem iste culpa nostrum magnam quasi nobis explicabo sunt distinctio aperiam, sapiente incidunt, asperiores quae ipsum quisquam rerum vel dolor aliquid.</p><br>
+                    <button class="btn btn-md btn-outline-primary">coming soon</button>
+                    </div>
+
+                        <div class=" header_img">
+                        
+                            
+                                <img src="{%static 'media/bg/bg6.png' %}" alt="" class="" style="">
+
+                        </div>
+
+                        
+                </div>
+
+
+
+<!-- 
+                <div class="slide">
+
+                    <div class="content">
+                        <h2>Lorem ipsum dolor, sit amet consectetur </h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod autem iste culpa nostrum magnam quasi nobis explicabo sunt distinctio aperiam, sapiente incidunt, asperiores quae ipsum quisquam rerum vel dolor aliquid.</p><br>
+                    <button class="btn btn-md btn-outline-primary">coming soon</button>
+                    </div>
+
+                        <div class=" header_img">
+                        
+                            
+                                <img src="{%static 'media/bg/bg2.png' %}" alt="" class="">
+
+                        </div>
+
+                        
+                </div>
+
+
+
+                <div class="slide">
+
+                    <div class="content">
+                        <h2>Lorem ipsum dolor, sit amet consectetur </h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod autem iste culpa nostrum magnam quasi nobis explicabo sunt distinctio aperiam, sapiente incidunt, asperiores quae ipsum quisquam rerum vel dolor aliquid.</p><br>
+                    <button class="btn btn-md btn-outline-primary">coming soon</button>
+                    </div>
+
+                        <div class=" header_img">
+                        
+                            
+                                <img src="{%static 'media/bg10.png' %}" alt="" class="">
+
+                        </div>
+
+                        
+                </div> 
+        
+        <div class="navigation-manual">
+            <label for="radio1"></label>
+            <label for="radio2"></label>
+            <label for="radio3"></label>
+        </div>  -->
+    </div>
+        
+    
+        <!-- auto navigation -->
+        <!-- <div class="navigation-auto">
+            <div class="auto-btn1"></div>
+            <div class="auto-btn2"></div>
+            <div class="auto-btn3"></div>
+         
+        </div> -->
+        
+        <!-- manual navigation -->
+ 
+
+    </div>
+
+</header>
+
+

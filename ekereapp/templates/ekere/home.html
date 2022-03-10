@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+
+<div class="bg">
+{% include 'navbar.html'%}
+<a href="#" class="back_to_top" id="back_to_top" style="text-decoration: none;">
+
+    <i class="fas fa-chevron-up" style="color: black;"></i>
+</a>
+
+<script>
+    arrow=document.querySelector('#back_to_top')
+    window.addEventListener('scroll',()=>{
+        let scrolled= window.scrollY;
+        // let scrollable= document.documentElement.scrollHeight-window.innerHeight
+        if(scrolled>=200){
+            arrow.style.display='flex';
+        }
+        else{
+            arrow.style.display='none'
+        }
+        // if(scrolled)
+
+    })
+</script>
+
+
+
+{%include 'header.html' %}
+
+
+
+    <div class="main">
+
+        <div class="products_holder">
+
+    {%if query %}
+
+    <h5>you searched for {{query}}</h5>
+            {%for object in query_product%}
+
+
+
+                
+                <div class="product" id="product" >
+                    {%if object.image %}
+                    <img src="{{object.image.url}}" alt="">
+                    {%endif%}
+                    <div class="product_desc">
+                        <p>{{object.title| truncatechars:17}}</p>
+                        <p class="price">${{object.price}}</p> <br>
+                        <p><small>{{object.content|truncatewords:6}} <a href="#{{object.slug}}">View more</a></small></p>
+                         <br>
+
+
+                         <center>
+
+                    
+                   {%if order_item in cart.items.all%}
+                   <a href="{%url 'cart' %}"></a><button>Go to Cart</button>
+                    {%else%}
+                    <a href="{%url 'add_to_cart' object.slug%}"><button class="btn btn-md btn-secondary">Add to Cart</button></a>
+
+                    {%endif%}
+                    </center>
+
+
+                    </div>
+                </div>
+
+            
+            {%endfor%}
+            <br> <br><br>
+            <nav aria-label="Page navigation example" style="background: none; box-shadow: none; display: flex; justify-content: center;align-items: center;" >
+                <ul class="pagination">
+    
+                    {%if  objects.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page=1">&laquo;&laquo; First</a></li>
+                  <li class="page-item"><a class="page-link" href="?page-link={{objects.previous_page_number}}">&laquo; Previous</a></li>
+                  {%endif%}
+                  
+                  <center>
+                    <span style="padding: 4% 0%;">Page {{objects.number}} of {{objects.paginator.num_pages}}</span>
+                  </center>
+                  
+    
+                  {%if objects.has_next %}
+                  <li class="page-item"><a class="page-link" href="?page={{objects.next_page_number}}">Next &raquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="?page={{objects.paginator_num_pages}}">Last &raquo;&raquo;</a></li>
+                  {%endif%}
+                </ul>
+              </nav>
+
+
+
+
+    {%else%}
+
+
+
+
+
+
+            {%for object in objects%}
+
+
+
+                
+            <div class="product" id="product" >
+                {%if object.image %}
+                <img src="{{object.image.url}}" alt="">
+                {%endif%}
+                <div class="product_desc">
+                    <p>{{object.title| truncatechars:17}}</p>
+                    <p class="price">${{object.price}}</p> <br>
+                    <p><small>{{object.content|truncatewords:6}} <a href="#{{object.slug}}">View more</a></small></p>
+                     <br>
+
+
+                     <center>
+
+                
+                        {%if carted %}
+                        <a href="{%url 'cart'  %}"><button class="btn btn-md btn-secondary">Go to Cart</button></a>
+                         {%else%}
+                         <a href="{%url 'add_to_cart' object.slug%}"><button class="btn btn-md btn-secondary">Add to Cart</button></a>
+     
+                         {%endif%}
+                </center>
+
+
+                </div>
+            </div>
+
+        
+        {%endfor%}
+            <br> <br><br>
+        <nav aria-label="Page navigation example" style="background: none; box-shadow: none; display: flex; justify-content: center;align-items: center;" >
+            <ul class="pagination">
+
+                {%if  objects.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page=1">&laquo;&laquo; First</a></li>
+              <li class="page-item"><a class="page-link" href="?page-link={{objects.previous_page_number}}">&laquo; Previous</a></li>
+              {%endif%}
+              
+              <center>
+                <span style="padding: 4% 0%;">Page {{objects.number}} of {{objects.paginator.num_pages}}</span>
+              </center>
+              
+
+              {%if objects.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{objects.next_page_number}}">Next &raquo;</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{objects.paginator_num_pages}}">Last &raquo;&raquo;</a></li>
+              {%endif%}
+            </ul>
+          </nav>
+        
+{%endif%}
+
+            </div>
+
+
+
+            <!-- lightbox -->
+                    
+            <div class="product-lightboxes" >
+                    
+                {%for object in objects%}
+
+                        <div class="product-lightbox" id="{{object.slug}}">
+
+                        <div class="product-lightbox_content" id="product" >
+                            <a href="#product" class="close">X</a>
+                            {%if object.image %}
+                            <img src="{{object.image.url}}" alt="">
+                            {%endif%}
+                            <div class="product_desc-lightbox">
+                                <p>{{object.title}}</p>
+                                <p class="price-lightbox">${{object.price}}</p> <br>
+                                <p><small>{{object.content|truncatewords:30}} </small></p>
+                                <!-- <a href="">View more</a> -->
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {%endfor%}
+
+
+
+                <div class="search-lightbox-holder" id="search">
+                    <a href="" class="search-close">X</a>
+                    <form action="{%url 'search' %}" class="search-lightbox">
+                        
+                        <input type="text" name="q" value="" placeholder="Looking for Something?">
+
+
+                            <button type="submit" class="btn-outline-secondary btn-lg">Search</button>
+                    </form>
+                </div>
+
+
+
+
+            </div>
+
+
+        
+
+
+    </div>
+  {%include 'footer.html' %}
+</div>
+<!-- <script >
+    var product=document.getElementById('product');
+    
+    product.addEventListener("click",()=>{
+        if(product.style.backgroundColor =="white"){
+            product.style.backgroundColor ="black";
+        }
+        else{
+            product.style.backgroundColor ="white";
+        }
+       
+    })
+
+    
+
+</script> -->
+
+{% endblock %}

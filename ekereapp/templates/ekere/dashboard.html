@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+
+  
+
+    <div class="dashboard_holder bg-light">
+
+        <ul class="dash_menu">
+            <div class="logo">
+                <a href="{%url 'home' %}"><p>E<span>kere</span></p></a>
+            </div> 
+
+
+            <li class="active" title="home"><a href="{%url 'home' %}"><img src="{%static 'media/home.png' %}" alt="home"> &nbsp; Home</a></li>
+            <li><a href="{%url 'home' %}"><img src="{%static 'media/prod.png' %}" alt=""> &nbsp; Products</a></li>
+            <li><a href=""><img src="{%static 'media/transact.png' %}" alt=""> &nbsp;Transacts</a></li>
+            <li><a href=""><img src="{%static 'media/refer.png' %}" alt="">&nbsp;Referrers</a></li>
+            <li><a href="{%url 'password_change' %}"><img src="{%static 'media/settings.png' %}" alt="">&nbsp;Settings</a></li>
+            <li><a href="{%url 'logout' %}"><img src="{%static 'media/logout.png' %}" alt="">&nbsp;Logout</a></li>
+
+
+        </ul>
+
+        <div class="dash_header">
+
+
+            <!-- <input type="checkbox" name="" id="check">
+
+            <label for="check" class="checkbtn" >
+
+                <i class="fa fa-bars"></i>
+            </label> -->
+
+            
+            <form action="{%url 'search' %}" >
+            <input type="text" name="q" id="">&nbsp;<button class="btn btn-secondary">Search</button>
+        </form>
+        
+        </div>
+
+
+
+
+        <div class="dash_main">
+
+
+           <div class="features">
+
+                <div class="feature_content user_profile">
+                 
+                    <p>User profile</p>
+                    {%if object.image%}
+                    <img src="{{object.image.url}}" alt="">
+                    {%else%}
+                    <img src="{{object.image}}" alt="">
+                    {%endif%}
+                    
+                    <small>{{request.user.first_name}} {{request.user.last_name}}</small>
+                    <small>{{request.user.email}}</small>
+               <form action="" method="post" enctype="multipart/form-data" style=" width: 100%; display: flex; justify-content: space-around; font-size: 15px; padding: 0% 2%;">
+                {%csrf_token%}
+                
+                {{form.image}}<br>
+                
+                <button type="submit" class="btn btn-primary">Upload</button>
+               </form>
+               <br>
+                </div>
+
+                
+                <div class="feature_content">
+                   
+                    <p>Total orders</p>
+                        
+                        <img src="{%static 'media\total_ord.png' %}" alt="">
+                        <p style="font-weight: bold;">{{total_orders}}</p>
+                  
+                </div>
+
+
+                
+                 
+                <div class="feature_content">
+                    <p>Delivered</p>
+                        
+                        <img src="{%static 'media\delivered.png' %}" alt="">
+                        <p style="font-weight: bold;">N/A</p>
+                   
+                </div>
+
+                
+                 
+                <div class="feature_content">
+                    <p>Pending</p>
+                        
+                        <img src="{%static 'media\pending.png' %}" alt="">
+                        <p style="font-weight: bold;">N/A</p>
+                   
+                </div>
+               
+           </div>
+
+
+           <div class="dash_table">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>ID no</th>
+                        <!-- <th>Product name</th> -->
+                        <th>Address</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>date ordered</th>
+                        <!-- <th>-</th> -->
+                    </tr>
+                </thead>
+    
+    
+    
+                <tbody>
+                        
+                    {%for cart in cart%}
+                        <tr>
+                        
+                            <td>{{forloop.counter}}</td>
+                            <td>{{cart.member_id|truncatechars:30}}</td>
+
+                            <!-- {%for product in cart.items.all%}
+                            <td>{{product.title}}</td>
+                            {%endfor%} -->
+                            <td>{{cart.addr.street_address}}</td>
+                            <td>{{cart.total_count}}</td>
+                            <td>${{cart.total_price}}</td>
+                            <td>{{cart.ordered_date}}</td>
+                     
+                        
+                        </tr>
+                        {%endfor%}
+                      
+                  
+                </tbody>
+    
+    
+    
+    
+
+           
+        </div>
+
+
+    </div>
+  
+</div>
+<!-- {%include 'footer.html' %} -->
+{%endblock%}

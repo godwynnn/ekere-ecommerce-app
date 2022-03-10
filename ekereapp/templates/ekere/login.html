@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static%}
+
+
+
+
+{% block content %}
+
+<div class="auth_form_holder">
+    
+            <div class="auth_form">
+                <h2 style="color: white;">Login</h2><br>
+                    <form method="post" action="" >{% csrf_token %}
+                        
+                            <label for="uname" >
+                                <input type="text" id="uname" name="username" placeholder="Enter Email" required>
+                            </label><br><br>
+                            <label for="pword" >
+                                <input type="password" id="pword" name="password" placeholder="Enter Password" required>
+                            </label><br><br>
+
+
+                            <div style=" width: 100%;padding-left: 15%;">
+                            <a href="{%url 'password_reset' %}"><p style="text-align: left; color: white; font-size: 15px;">Forgot password?</p></a>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-success btn-md" >Login</button><br><br>
+                            <a href="/ekere-signup" >Don't have an account? Signup</a><br>
+
+                            {% for message in messages %}
+                           <p style="color: wheat;">{{message}}</p> 
+                            {% endfor %}
+
+                            {%if request.GET.next%}
+                            <input type="hidden" name="next" value="{{request.GET.next}}">
+                            {%endif%}
+                    </form>
+        </div>
+
+</div>
+{% endblock %}
+</div>

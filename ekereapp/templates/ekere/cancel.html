@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{%block content%}
+<div class="bg-light msg_confirm_holder">
+
+    <div class="msg_confirm">
+        <h3>Payment Successful</h3> <br>
+        <img src="{%static 'media/fail-img.png' %}" alt=""> <br><br>
+        <button class="btn btn-danger" id="btn">Go Back</button>
+    </div>
+
+    <script>
+        document.getElementById('btn').addEventListener('click',()=>{
+            return window.history.back(-1);
+        })
+    </script>
+</div>
+{%endblock%}
