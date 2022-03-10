@@ -347,7 +347,7 @@ def Create_payment(request):
     items=''
     for product in cart.items.all():
         items=product
-    DOMAIN='ekere-ecomm.herokuapp.com/'    
+    DOMAIN='https://ekere-ecomm.herokuapp.com/'    
     stripe.api_key = settings.STRIPE_SECRET
     session = stripe.checkout.Session.create(
         line_items=[{
