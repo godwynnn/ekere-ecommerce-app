@@ -39,7 +39,7 @@ from ekereapp.views import(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/',home_page, name='home'),
+    path('',home_page, name='home'),
     path('ekere-new/',create_page, name='create'),
     # path('ekere/<slug:slug>/<int:id>/',detail_page,name='detail'),
     path('ekere/<slug:slug>/<str:id>/edit',update_page,name='update'),
