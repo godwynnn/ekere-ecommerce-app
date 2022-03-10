@@ -17,29 +17,14 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.contrib.auth import views as auth_views
-from ekereapp.views import(
-     home_page,
-     create_page,
-    #  detail_page,
-     update_page,
-     delete_page,
-     signup_page,
-     signin_view,
-    #  search_view,
-     Logout_view,
-     Add_to_cart,Cart_view,Remove_from_cart,Remove_single_item,
-     Address_page,Success_page,create_payment,Checkout_page,
-     Cancel_page,Dashboard,Search_page,Check_Carted
 
-
-)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(''ekereapp.urls),
+    path('', include('ekereapp.urls')),
     
 
 ]
