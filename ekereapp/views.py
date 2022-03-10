@@ -360,8 +360,8 @@ def create_payment(request):
         'quantity': 1,
         }],
         mode='payment',
-        success_url='http://127.0.0.1:8000/success/',
-        cancel_url='http://127.0.0.1:8000/cancel/',
+        success_url='ekere-ecomm.herokuapp.com/success/',
+        cancel_url='ekere-ecomm.herokuapp.com/cancel/',
     )
 
     return redirect(session.url, code=303)
