@@ -1,23 +1,7 @@
 
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import(
-     home_page,
-     create_page,
-    #  detail_page,
-     update_page,
-     delete_page,
-     signup_page,
-     signin_view,
-    #  search_view,
-     Logout_view,
-     Add_to_cart,Cart_view,Remove_from_cart,Remove_single_item,
-     Address_page,Success_page,create_payment,Checkout_page,
-     Cancel_page,Dashboard,Search_page,Check_Carted
-
-
-)
-
+from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
