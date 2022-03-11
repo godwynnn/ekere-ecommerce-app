@@ -1,7 +1,7 @@
 from http.client import HTTPResponse
-from math import prod
-from multiprocessing import context
-from turtle import title
+# from math import prod
+# from multiprocessing import context
+# from turtle import title
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
 from .forms import *
