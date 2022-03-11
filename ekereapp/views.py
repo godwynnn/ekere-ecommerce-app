@@ -85,7 +85,7 @@ def Check_Carted(request,slug):
     return render(request,template,context)
 
 @allowed_user
-def create_page(request):
+def Create_page(request):
     form=EkerePostForm(request.POST or None)
     if form.is_valid:
         if request.method=='POST':
